@@ -32,7 +32,7 @@ hourly_response = requests.get(hourly_search_url)
 NOAA_hourly = hourly_response.json()
 
 hourly_text = json.dumps(NOAA_hourly, sort_keys = True, indent = 1)
-formatted_hourly = hourly_text.split("{")#cant split by '{' or '}' because of nested braces
+formatted_hourly = hourly_text.replace('"',"").replace(",","").split()#cant split by '{' or '}' because of nested braces
 
 
 hour_segments = []
