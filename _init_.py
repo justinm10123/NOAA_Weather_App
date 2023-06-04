@@ -37,9 +37,13 @@ formatted_hourly = hourly_text.replace('"',"").replace(",","").split("number")#c
 #[0] is intro data/metadata stuff. [1] starts at current day/current hour script was ran and goes to [156?] for future hours/days
 #print(formatted_hourly[1])
 
-hourly = formatted_hourly[20].split()
+hourly = formatted_hourly[1].split()
 print(hourly)
 
+
+
+
+########################## should probably append the values to the lists below as to have all of the values in one list to reference in Access database/Tableau #################
 number = hourly[1]
 precipitation_chance = hourly[7]
 relative_humidity = hourly[14]
@@ -48,7 +52,9 @@ relative_humidity = hourly[14]
 def find_words_between_strings(hourly):
     found_words = []
     start_index = -1
+    global end_index
     end_index = -1
+    global final_words
 
     for i in range(len(hourly)):
         if hourly[i] == "shortForecast:":
@@ -58,9 +64,12 @@ def find_words_between_strings(hourly):
             break
         elif start_index != -1 and end_index == -1:
             found_words.append(hourly[i])
+    final_words = " ".join(found_words)
 
-    print(found_words)
 
 find_words_between_strings(hourly)
+print("Number: " + number + "\n" + "Chance of Precipitation: " + precipitation_chance + "%" + "\n" + "Relative Humidity: " + relative_humidity + "\n" + "Short Forecast: " + final_words)
+
+print(end_index) ####### Can use end_index variable to position the remainder of the array placements since short forecast can be different word legths #############
 
 #start_time = hourly[]
