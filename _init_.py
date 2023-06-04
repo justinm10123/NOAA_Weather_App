@@ -32,14 +32,12 @@ hourly_response = requests.get(hourly_search_url)
 NOAA_hourly = hourly_response.json()
 
 hourly_text = json.dumps(NOAA_hourly, sort_keys = True, indent = 1)
-formatted_hourly = hourly_text.replace('"',"").replace(",","").split()#cant split by '{' or '}' because of nested braces
+formatted_hourly = hourly_text.replace('"',"").replace(",","").split("number")#cant split by '{' or '}' because of nested braces
 
+number = []
 
-hour_segments = []
+#[0] is intro data/metadata stuff. [1] starts at current day/current hour script was ran and goes to [156?] for future hours/days
+#print(formatted_hourly[1])
 
-for z in formatted_hourly:
-    print(z)
-
-
-
-
+hourly1 = formatted_hourly[1].split()
+print(hourly1)
