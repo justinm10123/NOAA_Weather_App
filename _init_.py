@@ -71,6 +71,13 @@ find_words_between_strings(hourly)
 print("Number: " + number + "\n" + "Chance of Precipitation: " + precipitation_chance + "%" + "\n" + "Relative Humidity: " + relative_humidity + "\n" + "Short Forecast: " + final_words)
 
 print(end_index) ####### Can use end_index variable to position the remainder of the array placements since short forecast can be different word legths #############
-print(hourly[end_index + 1])#this will be the start date (will need to be formatted)
 
-#start_time = hourly[]
+#this will be the start date (will need to be formatted)
+start_time = hourly[end_index + 1]
+
+temperature = hourly[end_index + 3]
+wind_direction = hourly[end_index + 9]
+wind_speed = hourly[end_index + 11]
+day_night = hourly[-2]
+
+print(temperature, wind_direction, wind_speed, day_night)
