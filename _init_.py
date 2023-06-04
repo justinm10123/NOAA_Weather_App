@@ -34,10 +34,33 @@ NOAA_hourly = hourly_response.json()
 hourly_text = json.dumps(NOAA_hourly, sort_keys = True, indent = 1)
 formatted_hourly = hourly_text.replace('"',"").replace(",","").split("number")#cant split by '{' or '}' because of nested braces
 
-number = []
-
 #[0] is intro data/metadata stuff. [1] starts at current day/current hour script was ran and goes to [156?] for future hours/days
 #print(formatted_hourly[1])
 
-hourly1 = formatted_hourly[1].split()
-print(hourly1)
+hourly = formatted_hourly[20].split()
+print(hourly)
+
+number = hourly[1]
+precipitation_chance = hourly[7]
+relative_humidity = hourly[14]
+
+
+def find_words_between_strings(hourly):
+    found_words = []
+    start_index = -1
+    end_index = -1
+
+    for i in range(len(hourly)):
+        if hourly[i] == "shortForecast:":
+            start_index = i + 1
+        elif hourly[i] == "startTime:":
+            end_index = i
+            break
+        elif start_index != -1 and end_index == -1:
+            found_words.append(hourly[i])
+
+    print(found_words)
+
+find_words_between_strings(hourly)
+
+#start_time = hourly[]
